@@ -1,0 +1,84 @@
+{
+  "name": "vscode-ai-debugger",
+  "displayName": "AI Debugger for Machine Learning",
+  "description": "Visual debugger for ML models with PyTorch, TensorFlow and JAX support",
+  "version": "1.3.1",
+  "publisher": "yashh1321",
+  "icon": "extension-icon.png",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Debuggers",
+    "Machine Learning",
+    "Visualization"
+  ],
+  "keywords": [
+    "pytorch",
+    "tensorflow",
+    "jax",
+    "machine learning",
+    "deep learning",
+    "neural networks",
+    "ml",
+    "ai"
+  ],
+  "activationEvents": [
+    "onCommand:aiDebugger.startDebugging",
+    "onView:aiDebuggerModelExplorer",
+    "onLanguage:python"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiDebugger.startDebugging",
+        "title": "Start AI Debugger"
+      },
+      {
+        "command": "aiDebugger.inspectTensor",
+        "title": "Inspect Tensor"
+      },
+      {
+        "command": "aiDebugger.showMetricsDashboard",
+        "title": "Show Metrics Dashboard"
+      },
+      {
+        "command": "aiDebugger.showModelExplorer",
+        "title": "Show Model Explorer"
+      },
+      {
+        "command": "aiDebugger.exportModel",
+        "title": "Export Model"
+      }
+    ],
+    "configuration": {
+      "title": "AI Debugger",
+      "properties": {
+        "aiDebugger.framework.autoDetect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically detect ML frameworks in use"
+        },
+        "aiDebugger.framework.autoInstall": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically install missing ML frameworks when needed"
+        },
+        "aiDebugger.framework.selection": {
+          "type": "string",
+          "enum": ["pytorch", "tensorflow", "jax", "auto"],
+          "default": "auto",
+          "description": "Select which ML framework to use"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "vscode-languageclient": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yashh1321/AI-ML-Debugger"
+  }
+}

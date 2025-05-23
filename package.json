@@ -1,84 +1,1357 @@
 {
   "name": "vscode-ai-debugger",
-  "displayName": "AI Debugger for Machine Learning",
-  "description": "Visual debugger for ML models with PyTorch, TensorFlow and JAX support",
-  "version": "1.3.1",
-  "publisher": "yashh1321",
-  "icon": "extension-icon.png",
+  "displayName": "AI/ML Debugger",
+  "description": "The complete AI/ML development suite with 124 powerful commands and 25 specialized views. Features zero-config setup, real-time debugging, advanced analysis tools, privacy-aware training, cross-model comparison, and plugin extensibility. Supports PyTorch, TensorFlow, JAX with cloud integration.",
+  "version": "1.7.1",
+  "publisher": "yashh130021",
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.80.0"
   },
-  "categories": [
-    "Debuggers",
-    "Machine Learning",
-    "Visualization"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yashh1321/AI-ML-Debugger.git"
+  },
+  "icon": "extension-icon.png",
+  "galleryBanner": {
+    "color": "#232F3E",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/yashh1321/AI-ML-Debugger",
   "keywords": [
+    "machine learning",
+    "artificial intelligence",
     "pytorch",
     "tensorflow",
     "jax",
-    "machine learning",
+    "flax",
+    "model visualization",
+    "debugging",
+    "tensor",
+    "neural network",
     "deep learning",
-    "neural networks",
-    "ml",
-    "ai"
+    "AI/ML",
+    "auto-tuning",
+    "hyperparameter optimization",
+    "data-centric debugging",
+    "privacy-aware training",
+    "differential privacy",
+    "cross-model comparison",
+    "model benchmarking",
+    "plugin extensible",
+    "experiment tracking",
+    "performance profiling",
+    "distributed debugging",
+    "explainability",
+    "SHAP",
+    "LIME",
+    "cloud debugging",
+    "AWS SageMaker",
+    "Google Vertex AI",
+    "Azure ML",
+    "MLflow",
+    "Weights & Biases",
+    "Neptune",
+    "zero-config setup"
   ],
-  "activationEvents": [
-    "onCommand:aiDebugger.startDebugging",
-    "onView:aiDebuggerModelExplorer",
-    "onLanguage:python"
+  "license": "MIT",
+  "extensionDependencies": [
+    "ms-python.python"
   ],
-  "main": "./out/extension.js",
+  "categories": [
+    "Debuggers",
+    "Machine Learning",
+    "Data Science",
+    "Visualization",
+    "Testing"
+  ],
+  "activationEvents": [],
+  "main": "out/extension-improved.js",
+  "scripts": {
+    "vscode:prepublish": "echo Skipping prepublish"
+  },
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ai-debugger",
+          "title": "AI/ML Debugger",
+          "icon": {
+            "light": "resources/light/ai-icon.svg",
+            "dark": "resources/dark/ai-icon.svg"
+          }
+        }
+      ]
+    },
+    "views": {
+      "ai-debugger": [
+        {
+          "id": "aiDebugger.modelExplorer",
+          "name": "Model Architecture",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/model-architecture.svg"
+        },
+        {
+          "id": "aiDebugger.tensorInspector",
+          "name": "Tensor Inspector",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/tensor-inspector.svg"
+        },
+        {
+          "id": "aiDebugger.metricsView",
+          "name": "Metrics Dashboard",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/metrics-dashboard.svg"
+        },
+        {
+          "id": "aiDebugger.trainingConsole",
+          "name": "Training Console",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/training-console.svg"
+        },
+        {
+          "id": "aiDebugger.gradientVisualizer",
+          "name": "Gradient & Activation Visualizer",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/gradient-visualizer.svg"
+        },
+        {
+          "id": "aiDebugger.errorDetectionPanel",
+          "name": "Error Detection & Alerts",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/error-detection.svg"
+        },
+        {
+          "id": "aiDebugger.layoutManager",
+          "name": "Layout Manager",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/layout-manager.svg"
+        },
+        {
+          "id": "aiDebugger.tutorialsHub",
+          "name": "Tutorials & Community",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/tutorials-hub.svg"
+        },
+        {
+          "id": "aiDebugger.experimentTracker",
+          "name": "Experiment Tracker",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/experiment-tracker.svg"
+        },
+        {
+          "id": "aiDebugger.performanceProfiler",
+          "name": "Performance Profiler",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/performance-profiler.svg"
+        },
+        {
+          "id": "aiDebugger.notebookSupport",
+          "name": "Notebook Support",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/notebook-support.svg"
+        },
+        {
+          "id": "aiDebugger.distributedDebugger",
+          "name": "Distributed Debugger",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/distributed-debugger.svg"
+        },
+        {
+          "id": "aiDebugger.explainabilityTools",
+          "name": "Explainability Tools",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/explainability-tools.svg"
+        },
+        {
+          "id": "aiDebugger.hyperparameterSearch",
+          "name": "Hyperparameter Search",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/hyperparameter-search.svg"
+        },
+        {
+          "id": "aiDebugger.dataPipelineDebugger",
+          "name": "Data Pipeline Debugger",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/data-pipeline-debugger.svg"
+        },
+        {
+          "id": "aiDebugger.rcaEngine",
+          "name": "Root Cause Analysis",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/rca-engine.svg"
+        },
+        {
+          "id": "aiDebugger.llmCopilot",
+          "name": "LLM Debugging Copilot",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/llm-copilot.svg"
+        },
+        {
+          "id": "aiDebugger.remoteDebugger",
+          "name": "Remote & Cloud Debugging",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/remote-debugger.svg"
+        },
+        {
+          "id": "aiDebugger.telemetryTimeline",
+          "name": "Performance Timeline",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/telemetry-timeline.svg"
+        },
+        {
+          "id": "aiDebugger.liveReload",
+          "name": "Live Code Reload",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/live-reload.svg"
+        },
+        {
+          "id": "aiDebugger.autoTuningOptimizer",
+          "name": "Auto-Tuning Optimizer",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/auto-tuning-optimizer.svg"
+        },
+        {
+          "id": "aiDebugger.dataCentricDebugger",
+          "name": "Data-Centric Debugger",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/data-centric-debugger.svg"
+        },
+        {
+          "id": "aiDebugger.privacyAwareTraining",
+          "name": "Privacy-Aware Training",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/privacy-aware-training.svg"
+        },
+        {
+          "id": "aiDebugger.crossModelComparison",
+          "name": "Cross-Model Comparison",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/cross-model-comparison.svg"
+        },
+        {
+          "id": "aiDebugger.pluginAPI",
+          "name": "Plugin API Manager",
+          "when": "aiDebugger.hasActiveModel",
+          "icon": "resources/icons/plugin-api.svg"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "aiDebugger.startDebugging",
-        "title": "Start AI Debugger"
+        "command": "vscode-ai-debugger.showModelExplorer",
+        "title": "Show Model Architecture Explorer",
+        "category": "AI Debugger"
       },
       {
-        "command": "aiDebugger.inspectTensor",
-        "title": "Inspect Tensor"
+        "command": "vscode-ai-debugger.showTensorInspector",
+        "title": "Show Tensor Inspector",
+        "category": "AI Debugger"
       },
       {
-        "command": "aiDebugger.showMetricsDashboard",
-        "title": "Show Metrics Dashboard"
+        "command": "vscode-ai-debugger.showTrainingConsole",
+        "title": "Show Step-Through Training Console",
+        "category": "AI Debugger"
       },
       {
-        "command": "aiDebugger.showModelExplorer",
-        "title": "Show Model Explorer"
+        "command": "vscode-ai-debugger.showMetricsDashboard",
+        "title": "Show Live Metrics Dashboard",
+        "category": "AI Debugger"
       },
       {
-        "command": "aiDebugger.exportModel",
-        "title": "Export Model"
+        "command": "vscode-ai-debugger.showModelEditor",
+        "title": "Show Interactive Model Editor",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showGradientVisualizer",
+        "title": "Show Gradient & Activation Visualizer",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showHyperparameterTuner",
+        "title": "Show Hyperparameter Tuner",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.pauseTraining",
+        "title": "AI Debugger: Pause Training",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.resumeTraining",
+        "title": "AI Debugger: Resume Training",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.exportModelToONNX",
+        "title": "Export Model to ONNX Format",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.exportModelToTorchScript",
+        "title": "Export Model to TorchScript",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.compileModelAOT",
+        "title": "Compile Model with AOT",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.importExportedModel",
+        "title": "Import Exported Model",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.exportToTFLite",
+        "title": "Export Model to TensorFlow Lite",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.exportToSavedModel",
+        "title": "Export to TensorFlow SavedModel",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.exportJaxModel",
+        "title": "Export JAX/Flax Model",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.generateModelCode",
+        "title": "Generate Code from Model",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showModelExport",
+        "title": "Show Model Export Panel",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.pingPythonHelper",
+        "title": "Ping Python Helper",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.testRpcEcho",
+        "title": "Test RPC Echo",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.runTests",
+        "title": "Run Extension Tests",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.restartPythonHelper",
+        "title": "Restart Python Helper Process",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.installDependencies",
+        "title": "Install AI Debugger Dependencies",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showErrorDetectionPanel",
+        "title": "Show Error Detection & Smart Alerts",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.toggleGradientMonitoring",
+        "title": "Toggle Gradient Monitoring",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showLayoutManager",
+        "title": "Show Layout Manager",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.saveCurrentLayout",
+        "title": "Save Current Layout",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.loadLayout",
+        "title": "Load Layout Configuration",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.exportLayout",
+        "title": "Export Layout Configuration",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.importLayout",
+        "title": "Import Layout Configuration",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showTutorialsHub",
+        "title": "Show Tutorials & Community Hub",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.startInteractiveTutorial",
+        "title": "Start Interactive Tutorial",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.browseCommunityGallery",
+        "title": "Browse Community Gallery",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.createProjectFromTemplate",
+        "title": "Create Project from Template",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showExperimentTracker",
+        "title": "Show Experiment Tracker",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.syncExperiments",
+        "title": "Sync Experiments from W&B/MLflow/Neptune",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.compareExperiments",
+        "title": "Compare Experiments",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showPerformanceProfiler",
+        "title": "Show Performance Profiler",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.startPerformanceMonitoring",
+        "title": "Start Performance Monitoring",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.stopPerformanceMonitoring",
+        "title": "Stop Performance Monitoring",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.analyzePerformanceBottlenecks",
+        "title": "Analyze Performance Bottlenecks",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showNotebookSupport",
+        "title": "Show Notebook Support Panel",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.convertNotebookToScript",
+        "title": "Convert Notebook to Debug Script",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.createDebugNotebook",
+        "title": "Create Debug Notebook from Script",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showDistributedDebugger",
+        "title": "Show Distributed Debugger",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.setDistributedBreakpoint",
+        "title": "Set Distributed Breakpoint",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.analyzeModelDistribution",
+        "title": "Analyze Model Distribution",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showExplainabilityTools",
+        "title": "Show Explainability Tools",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.generateSHAPExplanation",
+        "title": "Generate SHAP Explanation",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.generateLIMEExplanation",
+        "title": "Generate LIME Explanation",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.generateGradCAM",
+        "title": "Generate Grad-CAM Visualization",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showHyperparameterSearch",
+        "title": "Show Hyperparameter Search",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.createOptunaStudy",
+        "title": "Create Optuna Study",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.suggestHyperparameters",
+        "title": "Suggest Hyperparameters",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.visualizeOptimizationHistory",
+        "title": "Visualize Optimization History",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.showDataPipelineDebugger",
+        "title": "Show Data Pipeline Debugger",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.analyzeDataset",
+        "title": "Analyze Dataset",
+        "category": "AI Debugger"
+      },
+      {
+        "command": "vscode-ai-debugger.visualizeBatch",
+        "title": "Visualize Data Batch",
+        "category": "AI Debugger"
+      },
+      {
+      "command": "vscode-ai-debugger.monitorDataLoading",
+      "title": "Monitor Data Loading Performance",
+      "category": "AI Debugger"
+      },
+        {
+          "command": "vscode-ai-debugger.showRCAEngine",
+          "title": "Show Root Cause Analysis Engine",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.startRCASession",
+          "title": "Start RCA Analysis Session",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.analyzeTrainingFailure",
+          "title": "Analyze Training Failure",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.exportRCAReport",
+          "title": "Export RCA Analysis Report",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showLLMCopilot",
+          "title": "Show LLM Debugging Copilot",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.explainError",
+          "title": "Explain Error with LLM",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.explainTensorShapes",
+          "title": "Explain Tensor Shapes",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.suggestDebugStrategy",
+          "title": "Suggest Debugging Strategy",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.chatWithCopilot",
+          "title": "Chat with Debugging Copilot",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showRemoteDebugger",
+          "title": "Show Remote & Cloud Debugger",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.connectToSageMaker",
+          "title": "Connect to AWS SageMaker Job",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.connectToVertexAI",
+          "title": "Connect to Google Vertex AI Job",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.connectToAzureML",
+          "title": "Connect to Azure ML Job",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.connectViaSSH",
+          "title": "Connect via SSH",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.setupPortForward",
+          "title": "Setup Port Forwarding",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.getRemoteLogs",
+          "title": "Get Remote Training Logs",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.startRemoteDebugSession",
+          "title": "Start Remote Debug Session",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showPerformanceTimeline",
+          "title": "Show Performance Timeline",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.startTimelineRecording",
+          "title": "Start Timeline Recording",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.stopTimelineRecording",
+          "title": "Stop Timeline Recording",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.addTimelineMarker",
+          "title": "Add Timeline Marker",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.exportTimeline",
+          "title": "Export Performance Timeline",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showLiveReload",
+          "title": "Show Live Code Reload Manager",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.startLiveReloadSession",
+          "title": "Start Live Reload Session",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.registerComponent",
+          "title": "Register Component for Hot Swapping",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.manualReload",
+          "title": "Manual Component Reload",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.rollbackComponent",
+          "title": "Rollback Component Changes",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.stopLiveReloadSession",
+          "title": "Stop Live Reload Session",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showAutoTuningOptimizer",
+          "title": "Show Auto-Tuning Optimizer",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.startLRRangeTest",
+          "title": "Start Learning Rate Range Test",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.suggestOptimizerSettings",
+          "title": "Suggest Optimizer Settings",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.runOptunaHyperparameterSweep",
+          "title": "Run Optuna Hyperparameter Sweep",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.getTuningHistory",
+          "title": "Get Tuning History",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showDataCentricDebugger",
+          "title": "Show Data-Centric Debugger",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.analyzeDatasetQuality",
+          "title": "Analyze Dataset Quality",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.detectDataDrift",
+          "title": "Detect Data Drift",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.trackSampleInfluence",
+          "title": "Track Sample Influence",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.detectLabelNoise",
+          "title": "Detect Label Noise",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showPrivacyAwareTraining",
+          "title": "Show Privacy-Aware Training",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.startPrivateTraining",
+          "title": "Start Private Training Session",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.computePrivacyLoss",
+          "title": "Compute Privacy Loss",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.analyzePrivacyUtilityTradeoff",
+          "title": "Analyze Privacy-Utility Tradeoff",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.getPrivacyRecommendations",
+          "title": "Get Privacy Parameter Recommendations",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.getPrivacyAudit",
+          "title": "Get Privacy Audit Report",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showCrossModelComparison",
+          "title": "Show Cross-Model Comparison",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.compareModelArchitectures",
+          "title": "Compare Model Architectures",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.compareTrainingPerformance",
+          "title": "Compare Training Performance",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.generateModelDiff",
+          "title": "Generate Model Architecture Diff",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.compareFLOPs",
+          "title": "Compare Model FLOPs",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.showPluginAPIManager",
+          "title": "Show Plugin API Manager",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.managePlugins",
+          "title": "Manage Plugins",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.activatePlugin",
+          "title": "Activate Plugin",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.deactivatePlugin",
+          "title": "Deactivate Plugin",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.triggerHook",
+          "title": "Trigger Plugin Hook",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.createCustomPanel",
+          "title": "Create Custom Panel",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.getAvailableHooks",
+          "title": "Get Available Plugin Hooks",
+          "category": "AI Debugger"
+        },
+        {
+          "command": "vscode-ai-debugger.openDashboard",
+          "title": "Open AI/ML Debugger Dashboard",
+          "category": "AI Debugger",
+          "icon": "$(home)"
+        },
+        {
+          "command": "vscode-ai-debugger.commandPalette",
+          "title": "AI/ML Debugger Command Palette",
+          "category": "AI Debugger",
+          "icon": "$(symbol-event)"
+        },
+        {
+          "command": "vscode-ai-debugger.quickStart",
+          "title": "Quick Start Wizard",
+          "category": "AI Debugger",
+          "icon": "$(rocket)"
+        },
+        {
+          "command": "vscode-ai-debugger.autoDetect",
+          "title": "Auto-Detect Models & Data",
+          "category": "AI Debugger",
+          "icon": "$(search)"
+        },
+        {
+          "command": "vscode-ai-debugger.smartLRTest",
+          "title": "Smart Learning Rate Test",
+          "category": "AI Debugger",
+          "icon": "$(graph)"
+        },
+        {
+          "command": "vscode-ai-debugger.dataHealthCheck",
+          "title": "Data Health Check",
+          "category": "AI Debugger",
+          "icon": "$(pulse)"
+        },
+        {
+          "command": "vscode-ai-debugger.privacyWizard",
+          "title": "Privacy Training Wizard",
+          "category": "AI Debugger",
+          "icon": "$(shield)"
+        },
+        {
+          "command": "vscode-ai-debugger.modelBenchmark",
+          "title": "Model Benchmark Suite",
+          "category": "AI Debugger",
+          "icon": "$(trophy)"
+        },
+        {
+          "command": "vscode-ai-debugger.pluginStore",
+          "title": "Plugin Store",
+          "category": "AI Debugger",
+          "icon": "$(extensions)"
+        }
+    ],
+    "keybindings": [
+      {
+        "command": "vscode-ai-debugger.openDashboard",
+        "key": "ctrl+alt+d",
+        "mac": "cmd+alt+d",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "vscode-ai-debugger.commandPalette",
+        "key": "ctrl+alt+p",
+        "mac": "cmd+alt+p"
+      },
+      {
+        "command": "vscode-ai-debugger.quickStart",
+        "key": "ctrl+alt+q",
+        "mac": "cmd+alt+q"
+      },
+      {
+        "command": "vscode-ai-debugger.autoDetect",
+        "key": "ctrl+alt+a",
+        "mac": "cmd+alt+a"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "vscode-ai-debugger.openDashboard",
+          "when": "true"
+        },
+        {
+          "command": "vscode-ai-debugger.commandPalette",
+          "when": "true"
+        },
+        {
+          "command": "vscode-ai-debugger.quickStart",
+          "when": "true"
+        }
+      ],
+      "editor/context": [
+        {
+          "submenu": "aiDebugger.context",
+          "group": "aiDebugger",
+          "when": "resourceExtname == .py"
+        }
+      ],
+      "aiDebugger.context": [
+        {
+          "command": "vscode-ai-debugger.openDashboard",
+          "group": "navigation"
+        },
+        {
+          "command": "vscode-ai-debugger.autoDetect",
+          "group": "analysis"
+        },
+        {
+          "command": "vscode-ai-debugger.smartLRTest",
+          "group": "analysis"
+        },
+        {
+          "command": "vscode-ai-debugger.dataHealthCheck",
+          "group": "data"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "vscode-ai-debugger.openDashboard",
+          "when": "view =~ /aiDebugger\\./",
+          "group": "navigation"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "aiDebugger.context",
+        "label": "AI/ML Debugger (124 Commands)"
       }
     ],
     "configuration": {
-      "title": "AI Debugger",
+      "title": "AI/ML Debugger",
       "properties": {
-        "aiDebugger.framework.autoDetect": {
+        "aiDebugger.enableTelemetry": {
           "type": "boolean",
-          "default": true,
-          "description": "Automatically detect ML frameworks in use"
+          "default": false,
+          "description": "Enable anonymous usage telemetry to help improve the extension"
+        },
+        "aiDebugger.samplingRate": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0.01,
+          "maximum": 1,
+          "description": "Sampling rate for metrics collection (1.0 = collect all data, 0.1 = collect 10% of data)"
+        },
+        "aiDebugger.autoRefreshRate": {
+          "type": "number",
+          "default": 1000,
+          "minimum": 100,
+          "maximum": 10000,
+          "description": "Auto-refresh rate for visualizations in milliseconds"
+        },
+        "aiDebugger.framework.preferredFramework": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "pytorch",
+            "tensorflow",
+            "jax"
+          ],
+          "default": "auto",
+          "description": "Preferred ML framework to use for debugging. 'auto' will auto-detect the framework."
         },
         "aiDebugger.framework.autoInstall": {
           "type": "boolean",
           "default": true,
           "description": "Automatically install missing ML frameworks when needed"
         },
-        "aiDebugger.framework.selection": {
+        "aiDebugger.framework.installSilent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Install dependencies silently without showing progress"
+        },
+        "aiDebugger.framework.installPath": {
           "type": "string",
-          "enum": ["pytorch", "tensorflow", "jax", "auto"],
+          "default": "",
+          "description": "Custom path for installing frameworks (leave empty to use default Python environment)"
+        },
+        "aiDebugger.framework.pythonPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Python executable to use for the AI Debugger. Leave empty to use the default Python interpreter."
+        },
+        "aiDebugger.errorDetection.enableSmartAlerts": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable intelligent error detection and smart alerts"
+        },
+        "aiDebugger.errorDetection.gradientThreshold": {
+          "type": "number",
+          "default": 100.0,
+          "description": "Threshold for exploding gradient detection"
+        },
+        "aiDebugger.errorDetection.vanishingThreshold": {
+          "type": "number",
+          "default": 1e-7,
+          "description": "Threshold for vanishing gradient detection"
+        },
+        "aiDebugger.errorDetection.learningRateAnalysis": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable learning rate optimization analysis"
+        },
+        "aiDebugger.layouts.enableCustomLayouts": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable custom layout management"
+        },
+        "aiDebugger.layouts.autoSaveWorkspace": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically save layout configurations per workspace"
+        },
+        "aiDebugger.layouts.defaultLayout": {
+          "type": "string",
+          "default": "standard",
+          "enum": ["standard", "research", "compact", "custom"],
+          "description": "Default layout configuration"
+        },
+        "aiDebugger.tutorials.enableInteractive": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable interactive tutorials and guided learning"
+        },
+        "aiDebugger.community.enableGallery": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable community gallery and user contributions"
+        },
+        "aiDebugger.community.autoUpdate": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically update community content"
+        },
+        "aiDebugger.experiments.autoSync": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically sync experiments from external platforms"
+        },
+        "aiDebugger.experiments.preferredPlatform": {
+          "type": "string",
+          "enum": ["auto", "wandb", "mlflow", "neptune"],
           "default": "auto",
-          "description": "Select which ML framework to use"
+          "description": "Preferred experiment tracking platform"
+        },
+        "aiDebugger.experiments.syncInterval": {
+          "type": "number",
+          "default": 300,
+          "description": "Sync interval in seconds for experiment tracking"
+        },
+        "aiDebugger.performance.enableMonitoring": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable performance monitoring during training"
+        },
+        "aiDebugger.performance.monitoringInterval": {
+          "type": "number",
+          "default": 2.0,
+          "description": "Performance monitoring interval in seconds"
+        },
+        "aiDebugger.performance.enableGPUMonitoring": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable GPU utilization monitoring"
+        },
+        "aiDebugger.notebook.autoConvert": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically convert notebooks to debug scripts"
+        },
+        "aiDebugger.notebook.enableKernelSupport": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Jupyter kernel integration"
+        },
+        "aiDebugger.distributed.enableMultiDevice": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable multi-device debugging support"
+        },
+        "aiDebugger.distributed.autoDetectFramework": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically detect distributed training framework"
+        },
+        "aiDebugger.explainability.preferredMethod": {
+          "type": "string",
+          "enum": ["auto", "shap", "lime", "integrated_gradients", "grad_cam"],
+          "default": "auto",
+          "description": "Preferred explainability method"
+        },
+        "aiDebugger.explainability.autoGenerateReports": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically generate explanation reports"
+        },
+        "aiDebugger.hyperparameter.preferredOptimizer": {
+          "type": "string",
+          "enum": ["auto", "optuna", "ray_tune", "hyperopt"],
+          "default": "auto",
+          "description": "Preferred hyperparameter optimization framework"
+        },
+        "aiDebugger.hyperparameter.enableRealTimeVisualization": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time optimization visualization"
+        },
+        "aiDebugger.dataPipeline.enableBatchVisualization": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable data batch visualization"
+        },
+        "aiDebugger.dataPipeline.maxBatchSamples": {
+          "type": "number",
+          "default": 8,
+          "description": "Maximum number of samples to show in batch visualization"
+        },
+        "aiDebugger.rca.enableAutoAnalysis": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic root cause analysis during training"
+        },
+        "aiDebugger.rca.confidenceThreshold": {
+          "type": "number",
+          "default": 0.7,
+          "description": "Confidence threshold for RCA pattern matching"
+        },
+        "aiDebugger.llm.provider": {
+          "type": "string",
+          "enum": ["openai", "local", "disabled"],
+          "default": "disabled",
+          "description": "LLM provider for debugging assistance"
+        },
+        "aiDebugger.llm.openaiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API key for LLM assistance (stored securely)"
+        },
+        "aiDebugger.llm.localEndpoint": {
+          "type": "string",
+          "default": "http://localhost:8080/v1/chat/completions",
+          "description": "Local LLM endpoint URL"
+        },
+        "aiDebugger.remote.enableCloudDebugging": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable remote cloud debugging features"
+        },
+        "aiDebugger.remote.sshTimeout": {
+          "type": "number",
+          "default": 30,
+          "description": "SSH connection timeout in seconds"
+        },
+        "aiDebugger.timeline.enableAutoRecording": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically start timeline recording when training begins"
+        },
+        "aiDebugger.timeline.maxTimelineEvents": {
+          "type": "number",
+          "default": 10000,
+          "description": "Maximum number of timeline events to store"
+        },
+        "aiDebugger.timeline.monitoringInterval": {
+          "type": "number",
+          "default": 0.5,
+          "description": "Timeline monitoring interval in seconds"
+        },
+        "aiDebugger.liveReload.enableHotSwapping": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable live code reload and hot swapping"
+        },
+        "aiDebugger.liveReload.reloadCooldown": {
+          "type": "number",
+          "default": 2.0,
+          "description": "Cooldown period between reloads in seconds"
+        },
+        "aiDebugger.liveReload.maxReloadAttempts": {
+          "type": "number",
+          "default": 3,
+          "description": "Maximum number of reload attempts before giving up"
+        },
+        "aiDebugger.autoTuning.enableLRRangeTest": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic learning rate range testing"
+        },
+        "aiDebugger.autoTuning.defaultOptunaTrials": {
+          "type": "number",
+          "default": 50,
+          "description": "Default number of trials for Optuna hyperparameter sweeps"
+        },
+        "aiDebugger.autoTuning.enableRealtimeRecommendations": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time optimizer recommendations"
+        },
+        "aiDebugger.autoTuning.confidenceThreshold": {
+          "type": "number",
+          "default": 0.8,
+          "description": "Confidence threshold for hyperparameter recommendations"
+        },
+        "aiDebugger.dataCentric.enableAutomaticQualityAnalysis": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically analyze dataset quality on load"
+        },
+        "aiDebugger.dataCentric.noiseDetectionThreshold": {
+          "type": "number",
+          "default": 0.05,
+          "description": "Threshold for label noise detection (0-1)"
+        },
+        "aiDebugger.dataCentric.driftMonitoringInterval": {
+          "type": "number",
+          "default": 100,
+          "description": "Batch interval for data drift monitoring"
+        },
+        "aiDebugger.dataCentric.maxSampleInfluenceTracking": {
+          "type": "number",
+          "default": 1000,
+          "description": "Maximum number of samples to track for influence analysis"
+        },
+        "aiDebugger.privacy.defaultEpsilonBudget": {
+          "type": "number",
+          "default": 10.0,
+          "description": "Default privacy budget (epsilon) for differential privacy"
+        },
+        "aiDebugger.privacy.defaultDeltaBudget": {
+          "type": "number",
+          "default": 1e-5,
+          "description": "Default privacy budget (delta) for differential privacy"
+        },
+        "aiDebugger.privacy.enablePrivacyAudit": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable privacy audit logging"
+        },
+        "aiDebugger.privacy.noiseVisualizationMode": {
+          "type": "string",
+          "enum": ["realtime", "batch", "disabled"],
+          "default": "batch",
+          "description": "Mode for noise injection visualization"
+        },
+        "aiDebugger.crossModel.enableRealTimeComparison": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time model comparison during training"
+        },
+        "aiDebugger.crossModel.maxModelsCompare": {
+          "type": "number",
+          "default": 5,
+          "description": "Maximum number of models to compare simultaneously"
+        },
+        "aiDebugger.crossModel.autoGenerateReports": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically generate comparison reports"
+        },
+        "aiDebugger.crossModel.comparisonMetrics": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": ["parameters", "flops", "memory", "accuracy"],
+          "description": "Metrics to include in model comparisons"
+        },
+        "aiDebugger.plugins.enableAutoDiscovery": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically discover plugins in workspace"
+        },
+        "aiDebugger.plugins.maxActivePlugins": {
+          "type": "number",
+          "default": 10,
+          "description": "Maximum number of active plugins"
+        },
+        "aiDebugger.plugins.enableHookDebugging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debugging output for plugin hooks"
+        },
+        "aiDebugger.plugins.customPanelTheme": {
+          "type": "string",
+          "enum": ["auto", "light", "dark", "high-contrast"],
+          "default": "auto",
+          "description": "Theme for custom plugin panels"
+        },
+        "aiDebugger.ui.autoOpenDashboard": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open dashboard when extension activates"
+        },
+        "aiDebugger.ui.showWelcomeMessage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show welcome message on first activation"
+        },
+        "aiDebugger.ui.enableSmartSuggestions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable smart suggestions and auto-completion"
+        },
+        "aiDebugger.ui.compactView": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use compact view for better screen utilization"
+        },
+        "aiDebugger.ui.defaultDashboardLayout": {
+          "type": "string",
+          "enum": ["grid", "list", "tabs"],
+          "default": "grid",
+          "description": "Default layout for the dashboard"
+        },
+        "aiDebugger.performance.enableCaching": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable caching for better performance"
+        },
+        "aiDebugger.performance.maxCacheSize": {
+          "type": "number",
+          "default": 100,
+          "description": "Maximum cache size in MB"
+        },
+        "aiDebugger.advanced.enableExperimentalFeatures": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable experimental features (may be unstable)"
+        },
+        "aiDebugger.advanced.verboseLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable verbose logging for troubleshooting"
+        },
+        "aiDebugger.shortcuts.enableQuickActions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable quick action shortcuts in the editor"
         }
       }
     }
-  },
-  "dependencies": {
-    "vscode-languageclient": "^7.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yashh1321/AI-ML-Debugger"
   }
 }

@@ -1,0 +1,3 @@
+## 2025-05-24 - Database Indexes for Timeline Telemetry queries
+**Learning:** The `get_timeline_data` function frequently queries large SQLite tables (`performance_events`, `system_metrics`, `layer_timings`, `timeline_markers`) filtering by `session_id` and optionally a timestamp range (`timestamp_ms`), then sorts by `timestamp_ms`. Without indexes, these queries trigger full table scans which can become a bottleneck as the database grows with telemetry data over long debugging/training sessions.
+**Action:** Always add composite indexes for frequently queried and sorted columns (e.g., `(session_id, timestamp_ms)`) when setting up SQLite tables for telemetry or logging systems to prevent performance degradation over time.
